@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TieBreak Club | Tu lugar. Tu deporte. Tu comunidad.</title>
+  <meta name="description"
+    content="TieBreak Club: canchas de polvo de ladrillo, pádel, gimnasio y más. Reservá tu cancha y viví el deporte al aire libre con la mejor comunidad." />
+  <meta name="keywords" content="tenis, pádel, club deportivo, canchas, polvo de ladrillo, gimnasio, clases, torneos" />
+
+  <!-- Tailwind CSS v4 Browser CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800;900&display=swap"
+    rel="stylesheet" />
+
+  <!-- ===== Tailwind v4 Theme Configuration ===== -->
+  <style type="text/tailwindcss">
+    @theme {
+      /* Custom Breakpoints */
+      --breakpoint-sm: 400px;
+      --breakpoint-md: 900px;
+      --breakpoint-lg: 1200px;
+
+      /* Brand Colors */
+      --color-terracota: #E05A36;
+      --color-neon: #DFFF00;
+      --color-azul: #00509E;
+      --color-crema: #F9FAFB;
+      --color-crema-dark: #F3F4F6;
+
+      /* Font Families */
+      --font-heading: 'Outfit', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+  </style>
+
+  <!-- ===== Custom Styles ===== -->
+  <style>
+    /* Smooth scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Base font */
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* Hide scrollbar for carousels */
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+
+    .scrollbar-hide {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Scroll Reveal Animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(48px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 {
+      transition-delay: 0.12s;
+    }
+
+    .reveal-delay-2 {
+      transition-delay: 0.24s;
+    }
+
+    .reveal-delay-3 {
+      transition-delay: 0.36s;
+    }
+
+    /* Hero entrance */
+    .hero-fade {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: heroFadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .hero-fade-delay {
+      animation-delay: 0.3s;
+    }
+
+    .hero-fade-delay-2 {
+      animation-delay: 0.6s;
+    }
+
+    @keyframes heroFadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Pulse glow for CTA */
+    @keyframes pulseGlow {
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 0 rgba(223, 255, 0, 0.4);
+      }
+
+      50% {
+        box-shadow: 0 0 24px 8px rgba(223, 255, 0, 0.25);
+      }
+    }
+
+    .cta-glow {
+      animation: pulseGlow 2.5s ease-in-out infinite;
+    }
+
+    /* Nav link active indicator */
+    .nav-link {
+      position: relative;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 50%;
+      width: 0;
+      height: 2.5px;
+      border-radius: 999px;
+      background-color: #DFFF00;
+      transition: width 0.3s ease, left 0.3s ease;
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+      left: 0;
+    }
+
+    /* Mobile menu overlay */
+    .mobile-overlay {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .mobile-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Mobile menu panel */
+    .mobile-panel {
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .mobile-panel.open {
+      transform: translateX(0);
+    }
+
+    /* Testimonials carousel transition */
+    .carousel-track {
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Form input focus ring */
+    .form-input:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(0, 80, 158, 0.2);
+      border-color: #00509E;
+    }
+
+    /* Social icon hover */
+    .social-icon {
+      transition: transform 0.25s ease, color 0.25s ease;
+    }
+
+    .social-icon:hover {
+      transform: translateY(-3px);
+      color: #DFFF00;
+    }
+
+    /* Hamburger animation */
+    .hamburger-line {
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .hamburger-open .hamburger-line:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger-open .hamburger-line:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger-open .hamburger-line:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+    }
+  </style>
+</head>
+
+<body class="bg-crema text-gray-800 antialiased">
+
+  <!-- ================================================================== -->
+  <!-- HEADER — Sticky, transparent → opaque on scroll                     -->
+  <!-- ================================================================== -->
+  <header id="main-header"
+    class="fixed top-0 left-0 w-full z-50 transition-all duration-500 py-5 bg-transparent">
+    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+
+      <!-- Logo -->
+      <a href="#inicio" id="header-logo"
+        class="font-heading text-2xl md:text-3xl font-extrabold tracking-tight text-white transition-colors duration-300">
+        <span class="text-neon">Tie</span>Break Club
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center gap-8" id="desktop-nav">
+        <a href="#inicio" class="nav-link text-sm font-semibold text-white/90 hover:text-white transition-colors">Inicio</a>
+        <a href="#nosotros" class="nav-link text-sm font-semibold text-white/90 hover:text-white transition-colors">Nosotros</a>
+        <a href="#servicios" class="nav-link text-sm font-semibold text-white/90 hover:text-white transition-colors">Servicios</a>
+        <a href="#testimonios" class="nav-link text-sm font-semibold text-white/90 hover:text-white transition-colors">Testimonios</a>
+        <a href="#contacto"
+          class="ml-2 px-5 py-2.5 bg-neon text-gray-900 font-bold text-sm rounded-full hover:bg-yellow-300 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105">
+          Contacto
+        </a>
+      </nav>
+
+      <!-- Hamburger Button (Mobile) -->
+      <button id="hamburger-btn" class="md:hidden flex flex-col items-center justify-center gap-[6px] w-10 h-10"
+        aria-label="Abrir menú">
+        <span class="hamburger-line block w-6 h-[2.5px] bg-white rounded-full origin-center"></span>
+        <span class="hamburger-line block w-6 h-[2.5px] bg-white rounded-full origin-center"></span>
+        <span class="hamburger-line block w-6 h-[2.5px] bg-white rounded-full origin-center"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ================================================================== -->
+  <!-- MOBILE MENU — Slide-in from right                                   -->
+  <!-- ================================================================== -->
+  <div id="mobile-overlay" class="mobile-overlay fixed inset-0 z-[60] bg-black/60"></div>
+  <div id="mobile-panel"
+    class="mobile-panel fixed top-0 right-0 h-full w-72 z-[70] bg-white shadow-2xl flex flex-col">
+    <!-- Close Button -->
+    <div class="flex justify-end p-5">
+      <button id="close-menu-btn" aria-label="Cerrar menú"
+        class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 transition">
+        <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+    <!-- Mobile Links -->
+    <nav class="flex flex-col gap-2 px-6">
+      <a href="#inicio" class="mobile-nav-link text-lg font-semibold text-gray-700 py-3 px-4 rounded-xl hover:bg-crema-dark transition">Inicio</a>
+      <a href="#nosotros" class="mobile-nav-link text-lg font-semibold text-gray-700 py-3 px-4 rounded-xl hover:bg-crema-dark transition">Nosotros</a>
+      <a href="#servicios" class="mobile-nav-link text-lg font-semibold text-gray-700 py-3 px-4 rounded-xl hover:bg-crema-dark transition">Servicios</a>
+      <a href="#testimonios" class="mobile-nav-link text-lg font-semibold text-gray-700 py-3 px-4 rounded-xl hover:bg-crema-dark transition">Testimonios</a>
+      <a href="#contacto"
+        class="mt-4 text-center text-lg font-bold text-gray-900 bg-neon py-3 px-4 rounded-2xl hover:bg-yellow-300 transition shadow-md">
+        Contacto
+      </a>
+    </nav>
+    <!-- Mobile Logo -->
+    <div class="mt-auto p-6 border-t border-gray-100">
+      <span class="font-heading text-xl font-extrabold text-gray-800">
+        <span class="text-terracota">Tie</span>Break Club
+      </span>
+    </div>
+  </div>
+
+  <!-- ================================================================== -->
+  <!-- HERO — Full viewport, background image + overlay                    -->
+  <!-- ================================================================== -->
+  <section id="inicio" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <!-- Background Image -->
+    <div class="absolute inset-0 bg-cover bg-center bg-no-repeat"
+      style="background-image: url('https://images.unsplash.com/photo-1554068865-24cecd4e34b8?auto=format&fit=crop&w=1920&q=80'); background-color: #1a3a2a;">
+    </div>
+    <!-- Dark Overlay -->
+    <div class="absolute inset-0 bg-black/55"></div>
+    <!-- Gradient bottom fade -->
+    <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-black/40 to-transparent"></div>
+
+    <!-- Content -->
+    <div class="relative z-10 text-center max-w-4xl mx-auto px-6">
+      <h1 class="hero-fade font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white leading-tight tracking-tight mb-6">
+        <span class="text-neon">Tie</span>Break<br />Club
+      </h1>
+      <p class="hero-fade hero-fade-delay text-lg sm:text-xl md:text-2xl text-white/85 font-medium max-w-2xl mx-auto mb-10 leading-relaxed">
+        Tu lugar. Tu deporte. Tu comunidad.<br class="hidden sm:block" />
+        Vení a vivir el deporte al aire libre en las mejores instalaciones de la ciudad.
+      </p>
+      <a href="#contacto"
+        class="hero-fade hero-fade-delay-2 cta-glow inline-block px-10 py-4 bg-neon text-gray-900 font-heading font-extrabold text-lg rounded-full hover:bg-yellow-300 hover:scale-105 transition-all duration-300 shadow-xl">
+        Reservá tu cancha
+      </a>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 hero-fade hero-fade-delay-2">
+      <div class="w-6 h-10 border-2 border-white/40 rounded-full flex justify-center pt-2">
+        <div class="w-1.5 h-3 bg-white/60 rounded-full animate-bounce"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================== -->
+  <!-- ABOUT — "Sobre nosotros"                                            -->
+  <!-- ================================================================== -->
+  <section id="nosotros" class="py-20 md:py-28 bg-crema">
+    <div class="max-w-6xl mx-auto px-6">
+
+      <!-- Section Title -->
+      <div class="text-center mb-16 reveal">
+        <span class="inline-block px-4 py-1.5 bg-terracota/10 text-terracota text-sm font-bold rounded-full mb-4 tracking-wide uppercase">
+          Sobre nosotros
+        </span>
+        <h2 class="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
+          Más que un club
+        </h2>
+      </div>
+
+      <!-- Hook -->
+      <p class="reveal reveal-delay-1 text-center text-xl sm:text-2xl md:text-3xl font-heading font-bold text-gray-800 max-w-3xl mx-auto mb-16 leading-snug">
+        "Más que un club, somos el <span class="text-terracota">punto de encuentro</span> donde tu pasión por el deporte
+        <span class="text-azul">cobra vida.</span>"
+      </p>
+
+      <!-- Features Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+
+        <!-- Feature 1 — Canchas -->
+        <div class="reveal reveal-delay-1 bg-white rounded-3xl p-8 shadow-sm hover:shadow-lg transition-shadow duration-300 border border-gray-100">
+          <div class="w-14 h-14 bg-terracota/10 rounded-2xl flex items-center justify-center mb-6">
+            <!-- Court SVG Icon -->
+            <svg class="w-7 h-7 text-terracota" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+              <rect x="2" y="4" width="20" height="16" rx="2" />
+              <line x1="12" y1="4" x2="12" y2="20" />
+              <line x1="2" y1="12" x2="22" y2="12" />
+              <circle cx="12" cy="12" r="3" />
+            </svg>
+          </div>
+          <h3 class="font-heading text-xl font-bold text-gray-900 mb-3">Centro integral de entrenamiento</h3>
+          <p class="text-gray-600 leading-relaxed">
+            Contamos con <strong class="text-terracota">7 canchas de polvo de ladrillo</strong> y <strong class="text-azul">4
+              canchas de pádel</strong> de última generación, mantenidas a la perfección durante todo el año.
+          </p>
+        </div>
+
+        <!-- Feature 2 — Instalaciones -->
+        <div class="reveal reveal-delay-2 bg-white rounded-3xl p-8 shadow-sm hover:shadow-lg transition-shadow duration-300 border border-gray-100">
+          <div class="w-14 h-14 bg-azul/10 rounded-2xl flex items-center justify-center mb-6">
+            <!-- Building SVG Icon -->
+            <svg class="w-7 h-7 text-azul" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+              <path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-4h6v4M9 9h.01M15 9h.01M9 13h.01M15 13h.01" />
+            </svg>
+          </div>
+          <h3 class="font-heading text-xl font-bold text-gray-900 mb-3">Instalaciones de primer nivel</h3>
+          <p class="text-gray-600 leading-relaxed">
+            Gimnasio especializado con equipos de última tecnología, buffet con opciones saludables y áreas de
+            esparcimiento para toda la familia.
+          </p>
+        </div>
+
+        <!-- Feature 3 — Torneos -->
+        <div class="reveal reveal-delay-3 bg-white rounded-3xl p-8 shadow-sm hover:shadow-lg transition-shadow duration-300 border border-gray-100">
+          <div class="w-14 h-14 bg-neon/20 rounded-2xl flex items-center justify-center mb-6">
+            <!-- Trophy SVG Icon -->
+            <svg class="w-7 h-7 text-yellow-600" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+              <path d="M8 21h8M12 17v4M7 4h10M7 4c0 0-2 0-2 3s2 6 2 6M17 4c0 0 2 0 2 3s-2 6-2 6M7 13c0 2 2.5 4 5 4s5-2 5-4" />
+            </svg>
+          </div>
+          <h3 class="font-heading text-xl font-bold text-gray-900 mb-3">Torneos y actividades</h3>
+          <p class="text-gray-600 leading-relaxed">
+            Organizamos torneos y actividades constantes para jugadores de todos los niveles. Desde amateurs hasta
+            competitivos, hay un lugar para vos.
+          </p>
+        </div>
+      </div>
+
+      <!-- Mission -->
+      <div class="reveal bg-azul rounded-3xl p-8 md:p-12 text-white shadow-xl">
+        <div class="flex flex-col md:flex-row items-start gap-6">
+          <div class="flex-shrink-0 w-14 h-14 bg-white/15 rounded-2xl flex items-center justify-center">
+            <!-- Heart SVG -->
+            <svg class="w-7 h-7 text-neon" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-heading text-2xl md:text-3xl font-bold mb-4">Nuestra Misión</h3>
+            <p class="text-white/85 text-lg leading-relaxed">
+              En TieBreak Club creemos que el deporte transforma vidas. Nuestro equipo de profesores y staff trabaja
+              cada día con una pasión genuina por fomentar el bienestar, el compañerismo y el espíritu deportivo.
+              Queremos que cada persona que cruce nuestras puertas se sienta parte de algo más grande: una comunidad
+              donde el esfuerzo se celebra, las amistades se forjan en la cancha y cada set es una oportunidad para
+              crecer.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================== -->
+  <!-- SERVICES — Horizontal carousel                                      -->
+  <!-- ================================================================== -->
+  <section id="servicios" class="py-20 md:py-28 bg-crema-dark">
+    <div class="max-w-6xl mx-auto px-6">
+
+      <!-- Section Title -->
+      <div class="text-center mb-14 reveal">
+        <span
+          class="inline-block px-4 py-1.5 bg-azul/10 text-azul text-sm font-bold rounded-full mb-4 tracking-wide uppercase">
+          Nuestros Servicios
+        </span>
+        <h2 class="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
+          Todo lo que necesitás<br class="hidden md:block" /> para entrenar y disfrutar
+        </h2>
+      </div>
+
+      <!-- Carousel Container -->
+      <div class="reveal reveal-delay-1 flex gap-8 overflow-x-auto snap-x snap-mandatory pb-6 scrollbar-hide -mx-2 px-2">
+
+        <!-- Card 1 — Alquiler de Canchas -->
+        <div
+          class="snap-start flex-shrink-0 w-[85%] sm:w-[75%] md:w-[45%] lg:w-[32%] bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group">
+          <div class="relative h-52 overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?auto=format&fit=crop&w=800&q=80"
+              alt="Canchas de tenis de polvo de ladrillo"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+          </div>
+          <div class="p-7">
+            <h3 class="font-heading text-xl font-bold text-gray-900 mb-3">Alquiler de Canchas</h3>
+            <p class="text-gray-600 mb-6 leading-relaxed">
+              Reservá canchas de polvo de ladrillo o pádel por hora. Disponibilidad flexible, iluminación nocturna y
+              vestuarios completos.
+            </p>
+            <a href="#contacto"
+              class="inline-flex items-center gap-2 px-6 py-3 bg-neon text-gray-900 font-bold text-sm rounded-full hover:bg-yellow-300 transition-all duration-300 hover:gap-3">
+              Conocé más
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 2 — Clases de Tenis y Pádel -->
+        <div
+          class="snap-start flex-shrink-0 w-[85%] sm:w-[75%] md:w-[45%] lg:w-[32%] bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group">
+          <div class="relative h-52 overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1542144582-1ba00456b5e3?auto=format&fit=crop&w=800&q=80"
+              alt="Clases de tenis con profesores"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+          </div>
+          <div class="p-7">
+            <h3 class="font-heading text-xl font-bold text-gray-900 mb-3">Clases de Tenis y Pádel</h3>
+            <p class="text-gray-600 mb-6 leading-relaxed">
+              Programas para todas las edades y niveles. Clases individuales, grupales e intensivos de verano con
+              profesores certificados.
+            </p>
+            <a href="#contacto"
+              class="inline-flex items-center gap-2 px-6 py-3 bg-neon text-gray-900 font-bold text-sm rounded-full hover:bg-yellow-300 transition-all duration-300 hover:gap-3">
+              Conocé más
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 3 — Planes de Entrenamiento en Gimnasio -->
+        <div
+          class="snap-start flex-shrink-0 w-[85%] sm:w-[75%] md:w-[45%] lg:w-[32%] bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group">
+          <div class="relative h-52 overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=80"
+              alt="Gimnasio con equipamiento moderno"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+          </div>
+          <div class="p-7">
+            <h3 class="font-heading text-xl font-bold text-gray-900 mb-3">Planes de Entrenamiento</h3>
+            <p class="text-gray-600 mb-6 leading-relaxed">
+              Nuestro gimnasio cuenta con equipamiento especializado para complementar tu rendimiento en cancha.
+              Rutinas personalizadas y seguimiento profesional.
+            </p>
+            <a href="#contacto"
+              class="inline-flex items-center gap-2 px-6 py-3 bg-neon text-gray-900 font-bold text-sm rounded-full hover:bg-yellow-300 transition-all duration-300 hover:gap-3">
+              Conocé más
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll hint on mobile -->
+      <p class="text-center text-sm text-gray-400 mt-4 md:hidden reveal reveal-delay-2">
+        ← Deslizá para ver más →
+      </p>
+    </div>
+  </section>
+
+  <!-- ================================================================== -->
+  <!-- TESTIMONIALS — Auto-carousel with tennis ball ratings               -->
+  <!-- ================================================================== -->
+  <section id="testimonios" class="py-20 md:py-28 bg-crema overflow-hidden">
+    <div class="max-w-6xl mx-auto px-6">
+
+      <!-- Section Title -->
+      <div class="text-center mb-14 reveal">
+        <span
+          class="inline-block px-4 py-1.5 bg-neon/20 text-yellow-700 text-sm font-bold rounded-full mb-4 tracking-wide uppercase">
+          Testimonios
+        </span>
+        <h2 class="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
+          Lo que dicen nuestros jugadores
+        </h2>
+      </div>
+
+      <!-- Carousel -->
+      <div class="reveal reveal-delay-1">
+        <div class="overflow-hidden rounded-3xl" id="testimonials-container">
+          <div class="carousel-track flex" id="testimonials-track">
+
+            <!-- Testimonial 1 -->
+            <div class="flex-shrink-0 w-full md:w-1/2 p-3">
+              <div class="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 h-full flex flex-col">
+                <!-- Tennis Ball Rating (5 balls) -->
+                <div class="flex gap-1.5 mb-5">
+                  <svg viewBox="0 0 20 20" class="w-5 h-5"><circle cx="10" cy="10" r="9" fill="#DFFF00" stroke="#8B9A1E" stroke-width="1"/><path d="M3 7Q10 14 17 7" stroke="#8B9A1E" stroke-width="1.2" fill="none"/><path d="M3 13Q10 6 17 13" stroke="#8B9A1E" stroke-width="1.2" fill="none"/></svg>
+                  <svg viewBox="0 0 20 20" class="w-5 h-5"><circle cx="10" cy="10" r="9" fill="#DFFF00" stroke="#8B9A1E" stroke-width="1"/><path d="M3 7Q10 14 17 7" stroke="#8B9A1E" stroke-width="1.2" fill="none"/><path d="M3 13Q10 6 17 13" stroke="#8B9A1E" stroke-width="1.2" fill="none"/></svg>
+                  <svg viewBox="0 0 20 20" class="w-5 h-5"><circle cx="10" cy="10" r="9" fill="#DFFF00" stroke="#8B9A1E" stroke-width="1"/><path d="M3 7Q10 14 17 7" stroke="#8B9A1E" stroke-width="1.2" fill="none"/><path d="M3 13Q10 6 17 13" stroke="#8B9A1E" stroke-width="1.2" fill="none"/></svg>
+                  <svg viewBox="0 0 20 20" class="w-5 h-5"><circle cx="10" cy="10" r="9" fill="#DFFF00" stroke="#8B9A1E" stroke-width="1"/><path d="M3 7Q10 14 17 7" stroke="#8B9A1E" stroke-width="1.2" fill="none"/><path d="M3 13Q10 6 17 13" stroke="#8B9A1E" stroke-width="1.2" fill="none"/></svg>
+                  <svg viewBox="0 0 20 20" class="w-5 h-5"><circle cx="10" cy="10" r="9" fill="#DFFF00" stroke="#8B9A1E" stroke-width="1"/><path d="M3 7Q10 14 17 7" stroke="#8B9A1E" stroke-width="1.2" fill="none"/><path d="M3 13Q10 6 17 13" stroke="#8B9A1E" stroke-width="1.2" fill="none"/></svg>
+                </div>
+                <p class="text-gray-600 leading-relaxed flex-grow mb-6">
+                  "Las canchas de polvo de ladrillo son de primer nivel. Vengo todos los sábados con mis amigos y la pasamos
+                  increíble. El mantenimiento es impecable y se nota el cariño que le ponen."
+                </p>
+                <div class="flex items-center gap-3">
+                  <div class="w-11 h-11 rounded-full bg-terracota/15 flex items-center justify-center font-heading font-bold text-terracota">MG</div>
+                  <div>
+                    <p class="font-heading font-bold text-gray-900">Martín González</p>
+                    <p class="text-sm text-gray-400">Socio desde 2021</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Testimonial 2 -->
+            <div class="flex-shrink-0 w-full md:w-1/2 p-3">
+              <div class="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 h-full flex flex-col">
+                <div class="flex gap-1.5 mb-5">
+                  <svg viewBox="0 0 20 20" class="w-5 h-5"><circle cx="10" cy="10" r="9" fill="#DFFF00" stroke="#8B9A1E" stroke-width="1"/><path d="M3 7Q10 14 17 7" stroke="#8B9A1E" stroke-width="1.2" fill="none"/><path d="M3 13Q10 6 17 13" stroke="#8B9A1E" stroke-width="1.2" fill="none"/></svg>
+                  <svg viewBox="0 0 20 20" class="w-5 h-5"><circle cx="10" cy="10" r="9" fill="#DFFF00" stroke="#8B9A1E" stroke-width="1"/><path d="M3 7Q10 14 17 7" stroke="#8B9A1E" stroke-width="1.2" fill="none"/><path d="M3 13Q10 6 17 13" stroke="#8B9A1E" stroke-width="1.2" fill="none"/></svg>
+                  <svg viewBox="0 0 20 20" class="w-5 h-5"><circle cx="10" cy="10" r="9" fill="#DFFF00" stroke="#8B9A1E" stroke-width="1"/><path d="M3 7Q10 14 17 7" stroke="#8B9A1E" stroke-width="1.2" fill="none"/><path d="M3 13Q10 6 17 13" stroke="#8B9A1E" stroke-width="1.2" fill="none"/></svg>
+                  <svg viewBox="0 0 20 20" class="w-5 h-5"><circle cx="10" cy="10" r="9" fill="#DFFF00" stroke="#8B9A1E" stroke-width="1"/><path d="M3 7Q10 14 17 7" stroke="#8B9A1E" stroke-width="1.2" fill="none"/><path d="M3 13Q10 6 17 13" stroke="#8B9A1E" stroke-width="1.2" fill="none"/></svg>
+                  <svg viewBox="0 0 20 20" class="w-5 h-5"><circle cx="10" cy="10" r="9" fill="#DFFF00" stroke="#8B9A1E" stroke-width="1"/><path d="M3 7Q10 14 17 7" stroke="#8B9A1E" stroke-width="1.2" fill="none"/><path d="M3 13Q10 6 17 13" stroke="#8B9A1E" stroke-width="1.2" fill="none"/></svg>
+                </div>
+                <p class="text-gray-600 leading-relaxed flex-grow mb-6">
+                  "Empecé a tomar clases de pádel hace 3 meses y ya estoy enganchada. Los profes son geniales, tienen una
+                  paciencia infinita, y el grupo que se armó es como una familia. ¡Amo venir!"
+                </p>
+                <div class="flex items-center gap-3">
+                  <div class="w-11 h-11 rounded-full bg-azul/15 flex items-center justify-center font-heading font-bold text-azul">LP</div>
+                  <div>
+                    <p class="font-heading font-bold text-gray-900">Lucía Peralta</p>
+                    <p class="text-sm text-gray-400">Alumna de pádel</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Testimonial 3 -->
+            <div class="flex-shrink-0 w-full md:w-1/2 p-3">
+              <div class="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 h-full flex flex-col">
+                <div class="flex gap-1.5 mb-5">
+                  <svg viewBox="0 0 20 20" class="w-5 h-5"><circle cx="10" cy="10" r="9" fill="#DFFF00" stroke="#8B9A1E" stroke-width="1"/><path d="M3 7Q10 14 17 7" stroke="#8B9A1E" stroke-width="1.2" fill="none"/><path d="M3 13Q10 6 17 13" stroke="#8B9A1E" stroke-width="1.2" fill="none"/></svg>
+                  <svg viewBox="0 0 20 20" class="w-5 h-5"><circle cx="10" cy="10" r="9" fill="#DFFF00" stroke="#8B9A1E" stroke-width="1"/><path d="M3 7Q10 14 17 7" stroke="#8B9A1E" stroke-width="1.2" fill="none"/><path d="M3 13Q10 6 17 13" stroke="#8B9A1E" stroke-width="1.2" fill="none"/></svg>
+                  <svg viewBox="0 0 20 20" class="w-5 h-5"><circle cx="10" cy="10" r="9" fill="#DFFF00" stroke="#8B9A1E" stroke-width="1"/><path d="M3 7Q10 14 17 7" stroke="#8B9A1E" stroke-width="1.2" fill="none"/><path d="M3 13Q10 6 17 13" stroke="#8B9A1E" stroke-width="1.2" fill="none"/></svg>
+                  <svg viewBox="0 0 20 20" class="w-5 h-5"><circle cx="10" cy="10" r="9" fill="#DFFF00" stroke="#8B9A1E" stroke-width="1"/><path d="M3 7Q10 14 17 7" stroke="#8B9A1E" stroke-width="1.2" fill="none"/><path d="M3 13Q10 6 17 13" stroke="#8B9A1E" stroke-width="1.2" fill="none"/></svg>
+                </div>
+                <p class="text-gray-600 leading-relaxed flex-grow mb-6">
+                  "El gimnasio tiene todo lo que necesito para complementar mi entrenamiento en cancha. Y después de
+                  entrenar, el buffet es un 10. Las milanesas son legendarias."
+                </p>
+                <div class="flex items-center gap-3">
+                  <div class="w-11 h-11 rounded-full bg-terracota/15 flex items-center justify-center font-heading font-bold text-terracota">FS</div>
+                  <div>
+                    <p class="font-heading font-bold text-gray-900">Fernando Suárez</p>
+                    <p class="text-sm text-gray-400">Socio desde 2019</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Testimonial 4 -->
+            <div class="flex-shrink-0 w-full md:w-1/2 p-3">
+              <div class="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 h-full flex flex-col">
+                <div class="flex gap-1.5 mb-5">
+                  <svg viewBox="0 0 20 20" class="w-5 h-5"><circle cx="10" cy="10" r="9" fill="#DFFF00" stroke="#8B9A1E" stroke-width="1"/><path d="M3 7Q10 14 17 7" stroke="#8B9A1E" stroke-width="1.2" fill="none"/><path d="M3 13Q10 6 17 13" stroke="#8B9A1E" stroke-width="1.2" fill="none"/></svg>
+                  <svg viewBox="0 0 20 20" class="w-5 h-5"><circle cx="10" cy="10" r="9" fill="#DFFF00" stroke="#8B9A1E" stroke-width="1"/><path d="M3 7Q10 14 17 7" stroke="#8B9A1E" stroke-width="1.2" fill="none"/><path d="M3 13Q10 6 17 13" stroke="#8B9A1E" stroke-width="1.2" fill="none"/></svg>
+                  <svg viewBox="0 0 20 20" class="w-5 h-5"><circle cx="10" cy="10" r="9" fill="#DFFF00" stroke="#8B9A1E" stroke-width="1"/><path d="M3 7Q10 14 17 7" stroke="#8B9A1E" stroke-width="1.2" fill="none"/><path d="M3 13Q10 6 17 13" stroke="#8B9A1E" stroke-width="1.2" fill="none"/></svg>
+                  <svg viewBox="0 0 20 20" class="w-5 h-5"><circle cx="10" cy="10" r="9" fill="#DFFF00" stroke="#8B9A1E" stroke-width="1"/><path d="M3 7Q10 14 17 7" stroke="#8B9A1E" stroke-width="1.2" fill="none"/><path d="M3 13Q10 6 17 13" stroke="#8B9A1E" stroke-width="1.2" fill="none"/></svg>
+                  <svg viewBox="0 0 20 20" class="w-5 h-5"><circle cx="10" cy="10" r="9" fill="#DFFF00" stroke="#8B9A1E" stroke-width="1"/><path d="M3 7Q10 14 17 7" stroke="#8B9A1E" stroke-width="1.2" fill="none"/><path d="M3 13Q10 6 17 13" stroke="#8B9A1E" stroke-width="1.2" fill="none"/></svg>
+                </div>
+                <p class="text-gray-600 leading-relaxed flex-grow mb-6">
+                  "Traigo a mis hijos a las clases de tenis todos los miércoles y el ambiente es súper seguro y familiar.
+                  Los profes tienen una dedicación increíble con los más chicos. Se van felices cada clase."
+                </p>
+                <div class="flex items-center gap-3">
+                  <div class="w-11 h-11 rounded-full bg-azul/15 flex items-center justify-center font-heading font-bold text-azul">CM</div>
+                  <div>
+                    <p class="font-heading font-bold text-gray-900">Carolina Méndez</p>
+                    <p class="text-sm text-gray-400">Mamá de Tomás y Sofía</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Testimonial 5 -->
+            <div class="flex-shrink-0 w-full md:w-1/2 p-3">
+              <div class="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 h-full flex flex-col">
+                <div class="flex gap-1.5 mb-5">
+                  <svg viewBox="0 0 20 20" class="w-5 h-5"><circle cx="10" cy="10" r="9" fill="#DFFF00" stroke="#8B9A1E" stroke-width="1"/><path d="M3 7Q10 14 17 7" stroke="#8B9A1E" stroke-width="1.2" fill="none"/><path d="M3 13Q10 6 17 13" stroke="#8B9A1E" stroke-width="1.2" fill="none"/></svg>
+                  <svg viewBox="0 0 20 20" class="w-5 h-5"><circle cx="10" cy="10" r="9" fill="#DFFF00" stroke="#8B9A1E" stroke-width="1"/><path d="M3 7Q10 14 17 7" stroke="#8B9A1E" stroke-width="1.2" fill="none"/><path d="M3 13Q10 6 17 13" stroke="#8B9A1E" stroke-width="1.2" fill="none"/></svg>
+                  <svg viewBox="0 0 20 20" class="w-5 h-5"><circle cx="10" cy="10" r="9" fill="#DFFF00" stroke="#8B9A1E" stroke-width="1"/><path d="M3 7Q10 14 17 7" stroke="#8B9A1E" stroke-width="1.2" fill="none"/><path d="M3 13Q10 6 17 13" stroke="#8B9A1E" stroke-width="1.2" fill="none"/></svg>
+                  <svg viewBox="0 0 20 20" class="w-5 h-5"><circle cx="10" cy="10" r="9" fill="#DFFF00" stroke="#8B9A1E" stroke-width="1"/><path d="M3 7Q10 14 17 7" stroke="#8B9A1E" stroke-width="1.2" fill="none"/><path d="M3 13Q10 6 17 13" stroke="#8B9A1E" stroke-width="1.2" fill="none"/></svg>
+                  <svg viewBox="0 0 20 20" class="w-5 h-5"><circle cx="10" cy="10" r="9" fill="#DFFF00" stroke="#8B9A1E" stroke-width="1"/><path d="M3 7Q10 14 17 7" stroke="#8B9A1E" stroke-width="1.2" fill="none"/><path d="M3 13Q10 6 17 13" stroke="#8B9A1E" stroke-width="1.2" fill="none"/></svg>
+                </div>
+                <p class="text-gray-600 leading-relaxed flex-grow mb-6">
+                  "Los torneos de pádel del fin de semana son el mejor plan. Conocí gente increíble, me mantengo activo
+                  y la competencia sana te motiva a seguir mejorando. ¡Se los recomiendo a todos!"
+                </p>
+                <div class="flex items-center gap-3">
+                  <div class="w-11 h-11 rounded-full bg-terracota/15 flex items-center justify-center font-heading font-bold text-terracota">SR</div>
+                  <div>
+                    <p class="font-heading font-bold text-gray-900">Sebastián Rivas</p>
+                    <p class="text-sm text-gray-400">Jugador de pádel</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Testimonial 6 -->
+            <div class="flex-shrink-0 w-full md:w-1/2 p-3">
+              <div class="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 h-full flex flex-col">
+                <div class="flex gap-1.5 mb-5">
+                  <svg viewBox="0 0 20 20" class="w-5 h-5"><circle cx="10" cy="10" r="9" fill="#DFFF00" stroke="#8B9A1E" stroke-width="1"/><path d="M3 7Q10 14 17 7" stroke="#8B9A1E" stroke-width="1.2" fill="none"/><path d="M3 13Q10 6 17 13" stroke="#8B9A1E" stroke-width="1.2" fill="none"/></svg>
+                  <svg viewBox="0 0 20 20" class="w-5 h-5"><circle cx="10" cy="10" r="9" fill="#DFFF00" stroke="#8B9A1E" stroke-width="1"/><path d="M3 7Q10 14 17 7" stroke="#8B9A1E" stroke-width="1.2" fill="none"/><path d="M3 13Q10 6 17 13" stroke="#8B9A1E" stroke-width="1.2" fill="none"/></svg>
+                  <svg viewBox="0 0 20 20" class="w-5 h-5"><circle cx="10" cy="10" r="9" fill="#DFFF00" stroke="#8B9A1E" stroke-width="1"/><path d="M3 7Q10 14 17 7" stroke="#8B9A1E" stroke-width="1.2" fill="none"/><path d="M3 13Q10 6 17 13" stroke="#8B9A1E" stroke-width="1.2" fill="none"/></svg>
+                  <svg viewBox="0 0 20 20" class="w-5 h-5"><circle cx="10" cy="10" r="9" fill="#DFFF00" stroke="#8B9A1E" stroke-width="1"/><path d="M3 7Q10 14 17 7" stroke="#8B9A1E" stroke-width="1.2" fill="none"/><path d="M3 13Q10 6 17 13" stroke="#8B9A1E" stroke-width="1.2" fill="none"/></svg>
+                </div>
+                <p class="text-gray-600 leading-relaxed flex-grow mb-6">
+                  "El club tiene unas instalaciones bárbaras. Las canchas de polvo de ladrillo me recuerdan a las de los
+                  grandes torneos internacionales. Un verdadero lujo para los que amamos el tenis."
+                </p>
+                <div class="flex items-center gap-3">
+                  <div class="w-11 h-11 rounded-full bg-azul/15 flex items-center justify-center font-heading font-bold text-azul">VD</div>
+                  <div>
+                    <p class="font-heading font-bold text-gray-900">Valentina Domínguez</p>
+                    <p class="text-sm text-gray-400">Socia desde 2022</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Carousel Dots -->
+        <div class="flex justify-center gap-2 mt-8" id="carousel-dots"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================== -->
+  <!-- CONTACT — "Escribinos"                                              -->
+  <!-- ================================================================== -->
+  <section id="contacto" class="py-20 md:py-28 bg-crema-dark">
+    <div class="max-w-3xl mx-auto px-6">
+
+      <!-- Section Title -->
+      <div class="text-center mb-14 reveal">
+        <span
+          class="inline-block px-4 py-1.5 bg-terracota/10 text-terracota text-sm font-bold rounded-full mb-4 tracking-wide uppercase">
+          Contacto
+        </span>
+        <h2 class="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-4">
+          Escribinos
+        </h2>
+        <p class="text-lg text-gray-500 max-w-xl mx-auto">
+          ¿Listo para tu próximo partido? Dejanos tus datos y te contactamos al instante.
+        </p>
+      </div>
+
+      <!-- Contact Form -->
+      <form id="contact-form" class="reveal reveal-delay-1 bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-gray-100"
+        novalidate>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <!-- Nombre -->
+          <div>
+            <label for="input-nombre" class="block text-sm font-semibold text-gray-700 mb-2">Nombre</label>
+            <input type="text" id="input-nombre" name="nombre" placeholder="Tu nombre completo" required
+              class="form-input w-full px-5 py-3.5 bg-crema border border-gray-200 rounded-2xl text-gray-800 placeholder-gray-400 transition-all duration-300" />
+          </div>
+          <!-- Email -->
+          <div>
+            <label for="input-email" class="block text-sm font-semibold text-gray-700 mb-2">Email</label>
+            <input type="email" id="input-email" name="email" placeholder="tu@email.com" required
+              class="form-input w-full px-5 py-3.5 bg-crema border border-gray-200 rounded-2xl text-gray-800 placeholder-gray-400 transition-all duration-300" />
+          </div>
+        </div>
+
+        <!-- Teléfono -->
+        <div class="mb-6">
+          <label for="input-telefono" class="block text-sm font-semibold text-gray-700 mb-2">Teléfono</label>
+          <input type="tel" id="input-telefono" name="telefono" placeholder="+54 11 5555-1234"
+            class="form-input w-full px-5 py-3.5 bg-crema border border-gray-200 rounded-2xl text-gray-800 placeholder-gray-400 transition-all duration-300" />
+        </div>
+
+        <!-- Consulta -->
+        <div class="mb-8">
+          <label for="input-consulta" class="block text-sm font-semibold text-gray-700 mb-2">Tu consulta</label>
+          <textarea id="input-consulta" name="consulta" rows="4"
+            placeholder="Contanos en qué podemos ayudarte..." required
+            class="form-input w-full px-5 py-3.5 bg-crema border border-gray-200 rounded-2xl text-gray-800 placeholder-gray-400 transition-all duration-300 resize-none"></textarea>
+        </div>
+
+        <!-- Submit -->
+        <button type="submit" id="submit-btn"
+          class="w-full py-4 bg-azul text-white font-heading font-bold text-lg rounded-2xl hover:bg-blue-800 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-[1.01] active:scale-[0.99]">
+          Enviar consulta
+        </button>
+
+        <!-- Success message (hidden) -->
+        <div id="form-success"
+          class="hidden mt-6 p-5 bg-green-50 border border-green-200 rounded-2xl text-center">
+          <p class="text-green-700 font-semibold">🎾 ¡Mensaje enviado con éxito! Te contactamos pronto.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ================================================================== -->
+  <!-- FOOTER — Azul profundo con columnas de info                         -->
+  <!-- ================================================================== -->
+  <footer class="bg-azul text-white">
+    <div class="max-w-7xl mx-auto px-6 py-16 md:py-20">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+
+        <!-- Column 1 — Contacto -->
+        <div>
+          <h4 class="font-heading text-lg font-bold mb-6 text-neon">Contacto</h4>
+          <ul class="space-y-4 text-white/75 text-sm">
+            <li class="flex items-start gap-3">
+              <!-- Location Pin SVG -->
+              <svg class="w-5 h-5 mt-0.5 flex-shrink-0 text-white/50" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+                <circle cx="12" cy="9" r="2.5"/>
+              </svg>
+              <span>Av. del Libertador 4500,<br />Buenos Aires, Argentina</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <!-- Phone SVG -->
+              <svg class="w-5 h-5 flex-shrink-0 text-white/50" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.81.36 1.6.68 2.35a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.75.32 1.54.55 2.35.68A2 2 0 0122 16.92z"/>
+              </svg>
+              <span>+54 11 5555-1234</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <!-- Email SVG -->
+              <svg class="w-5 h-5 flex-shrink-0 text-white/50" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <rect x="2" y="4" width="20" height="16" rx="2"/>
+                <polyline points="22,4 12,13 2,4"/>
+              </svg>
+              <span>info@tiebreakclub.com</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <!-- Clock SVG -->
+              <svg class="w-5 h-5 mt-0.5 flex-shrink-0 text-white/50" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+              </svg>
+              <span>Lun a Vie: 7:00 – 22:00<br />Sáb y Dom: 8:00 – 20:00</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Column 2 — Enlaces de interés -->
+        <div>
+          <h4 class="font-heading text-lg font-bold mb-6 text-neon">Enlaces de interés</h4>
+          <ul class="space-y-3 text-white/75 text-sm">
+            <li><a href="#servicios" class="hover:text-white transition-colors hover:underline underline-offset-4">Reserva de canchas</a></li>
+            <li><a href="#servicios" class="hover:text-white transition-colors hover:underline underline-offset-4">Clases</a></li>
+            <li><a href="#contacto" class="hover:text-white transition-colors hover:underline underline-offset-4">Torneos</a></li>
+            <li><a href="#" class="hover:text-white transition-colors hover:underline underline-offset-4">Normativa del club</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3 — Redes Sociales -->
+        <div>
+          <h4 class="font-heading text-lg font-bold mb-6 text-neon">Redes Sociales</h4>
+          <ul class="space-y-4 text-white/75 text-sm">
+            <li>
+              <a href="#" class="social-icon inline-flex items-center gap-3 hover:text-neon">
+                <!-- Instagram SVG -->
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                </svg>
+                <span>Instagram</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="social-icon inline-flex items-center gap-3 hover:text-neon">
+                <!-- Facebook SVG -->
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+                <span>Facebook</span>
+              </a>
+            </li>
+            <li>
+              <a href="mailto:info@tiebreakclub.com" class="social-icon inline-flex items-center gap-3 hover:text-neon">
+                <!-- Email SVG -->
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                  <rect x="2" y="4" width="20" height="16" rx="2"/>
+                  <polyline points="22,4 12,13 2,4"/>
+                </svg>
+                <span>Email</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="social-icon inline-flex items-center gap-3 hover:text-neon">
+                <!-- WhatsApp SVG -->
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                </svg>
+                <span>WhatsApp</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Column 4 — Legal -->
+        <div>
+          <h4 class="font-heading text-lg font-bold mb-6 text-neon">Legal</h4>
+          <ul class="space-y-3 text-white/75 text-sm">
+            <li><a href="#" class="hover:text-white transition-colors hover:underline underline-offset-4">Aviso legal</a></li>
+            <li><a href="#" class="hover:text-white transition-colors hover:underline underline-offset-4">Política de privacidad</a></li>
+            <li><a href="#" class="hover:text-white transition-colors hover:underline underline-offset-4">Cookies</a></li>
+            <li><a href="#" class="hover:text-white transition-colors hover:underline underline-offset-4">Derechos de autor</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="border-t border-white/15">
+      <div class="max-w-7xl mx-auto px-6 py-6 text-center">
+        <p class="text-white/50 text-sm">
+          © 2026 TieBreak Club. Todos los derechos reservados. · Web desarrollada por
+          <a href="#" class="text-neon hover:underline font-semibold">MAE.dev</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================================================================== -->
+  <!-- JAVASCRIPT — All interactivity in one script                        -->
+  <!-- ================================================================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+      /* =========================================================
+         1. SCROLL REVEAL — IntersectionObserver
+         ========================================================= */
+      const revealElements = document.querySelectorAll('.reveal');
+
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            // Once revealed, stop observing for performance
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.12,
+        rootMargin: '0px 0px -60px 0px'
+      });
+
+      revealElements.forEach((el) => revealObserver.observe(el));
+
+
+      /* =========================================================
+         2. STICKY HEADER — Transparent → Opaque on scroll
+         ========================================================= */
+      const header = document.getElementById('main-header');
+      const headerLogo = document.getElementById('header-logo');
+      const desktopNav = document.getElementById('desktop-nav');
+      const hamburgerLines = document.querySelectorAll('.hamburger-line');
+      let isHeaderScrolled = false;
+
+      function handleHeaderScroll() {
+        const scrolled = window.scrollY > 80;
+        if (scrolled !== isHeaderScrolled) {
+          isHeaderScrolled = scrolled;
+          if (scrolled) {
+            header.classList.remove('bg-transparent', 'py-5');
+            header.classList.add('bg-white/95', 'backdrop-blur-lg', 'shadow-lg', 'py-3');
+            // Change text colors for opaque header
+            headerLogo.classList.remove('text-white');
+            headerLogo.classList.add('text-gray-900');
+            desktopNav.querySelectorAll('.nav-link').forEach((link) => {
+              link.classList.remove('text-white/90', 'hover:text-white');
+              link.classList.add('text-gray-600', 'hover:text-gray-900');
+            });
+            // Update nav link active indicator color
+            document.documentElement.style.setProperty('--nav-indicator', '#E05A36');
+            // Change hamburger lines color
+            hamburgerLines.forEach((line) => {
+              line.classList.remove('bg-white');
+              line.classList.add('bg-gray-800');
+            });
+          } else {
+            header.classList.remove('bg-white/95', 'backdrop-blur-lg', 'shadow-lg', 'py-3');
+            header.classList.add('bg-transparent', 'py-5');
+            headerLogo.classList.remove('text-gray-900');
+            headerLogo.classList.add('text-white');
+            desktopNav.querySelectorAll('.nav-link').forEach((link) => {
+              link.classList.remove('text-gray-600', 'hover:text-gray-900');
+              link.classList.add('text-white/90', 'hover:text-white');
+            });
+            hamburgerLines.forEach((line) => {
+              line.classList.remove('bg-gray-800');
+              line.classList.add('bg-white');
+            });
+          }
+        }
+      }
+
+      window.addEventListener('scroll', handleHeaderScroll, { passive: true });
+      handleHeaderScroll(); // Run on load in case of refresh mid-page
+
+
+      /* =========================================================
+         3. ACTIVE NAV LINK — Highlight based on scroll position
+         ========================================================= */
+      const navSections = document.querySelectorAll('section[id]');
+      const navLinks = document.querySelectorAll('.nav-link');
+
+      const activeObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const sectionId = entry.target.getAttribute('id');
+            navLinks.forEach((link) => {
+              const href = link.getAttribute('href');
+              if (href === `#${sectionId}`) {
+                link.classList.add('active');
+              } else {
+                link.classList.remove('active');
+              }
+            });
+          }
+        });
+      }, {
+        threshold: 0.3,
+        rootMargin: '-80px 0px -50% 0px'
+      });
+
+      navSections.forEach((section) => activeObserver.observe(section));
+
+
+      /* =========================================================
+         4. MOBILE MENU — Open / Close
+         ========================================================= */
+      const hamburgerBtn = document.getElementById('hamburger-btn');
+      const mobileOverlay = document.getElementById('mobile-overlay');
+      const mobilePanel = document.getElementById('mobile-panel');
+      const closeMenuBtn = document.getElementById('close-menu-btn');
+      const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+      function openMobileMenu() {
+        mobileOverlay.classList.add('open');
+        mobilePanel.classList.add('open');
+        hamburgerBtn.classList.add('hamburger-open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeMobileMenu() {
+        mobileOverlay.classList.remove('open');
+        mobilePanel.classList.remove('open');
+        hamburgerBtn.classList.remove('hamburger-open');
+        document.body.style.overflow = '';
+      }
+
+      hamburgerBtn.addEventListener('click', openMobileMenu);
+      closeMenuBtn.addEventListener('click', closeMobileMenu);
+      mobileOverlay.addEventListener('click', closeMobileMenu);
+
+      // Close menu when clicking a navigation link
+      mobileNavLinks.forEach((link) => {
+        link.addEventListener('click', () => {
+          closeMobileMenu();
+        });
+      });
+
+      // Close on Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeMobileMenu();
+      });
+
+
+      /* =========================================================
+         5. TESTIMONIALS CAROUSEL — Auto-rotating
+         ========================================================= */
+      const track = document.getElementById('testimonials-track');
+      const dotsContainer = document.getElementById('carousel-dots');
+      let currentPage = 0;
+      let carouselInterval = null;
+      const SLIDE_INTERVAL = 4500; // 4.5 seconds
+
+      function getCardsPerView() {
+        return window.innerWidth >= 900 ? 2 : 1;
+      }
+
+      function getTotalPages() {
+        const totalCards = 6;
+        return Math.ceil(totalCards / getCardsPerView());
+      }
+
+      function renderDots() {
+        const totalPages = getTotalPages();
+        dotsContainer.innerHTML = '';
+        for (let i = 0; i < totalPages; i++) {
+          const dot = document.createElement('button');
+          dot.className = `w-3 h-3 rounded-full transition-all duration-300 ${
+            i === currentPage
+              ? 'bg-terracota w-8'
+              : 'bg-gray-300 hover:bg-gray-400'
+          }`;
+          dot.setAttribute('aria-label', `Ir a página ${i + 1}`);
+          dot.addEventListener('click', () => {
+            currentPage = i;
+            updateCarousel();
+            resetInterval();
+          });
+          dotsContainer.appendChild(dot);
+        }
+      }
+
+      function updateCarousel() {
+        const percentage = currentPage * 100;
+        track.style.transform = `translateX(-${percentage}%)`;
+        renderDots();
+      }
+
+      function advanceCarousel() {
+        currentPage = (currentPage + 1) % getTotalPages();
+        updateCarousel();
+      }
+
+      function resetInterval() {
+        clearInterval(carouselInterval);
+        carouselInterval = setInterval(advanceCarousel, SLIDE_INTERVAL);
+      }
+
+      // Initialize
+      renderDots();
+      updateCarousel();
+      carouselInterval = setInterval(advanceCarousel, SLIDE_INTERVAL);
+
+      // Pause on hover
+      const testimonialsContainer = document.getElementById('testimonials-container');
+      testimonialsContainer.addEventListener('mouseenter', () => {
+        clearInterval(carouselInterval);
+      });
+      testimonialsContainer.addEventListener('mouseleave', () => {
+        resetInterval();
+      });
+
+      // Recalculate on resize
+      let resizeTimer;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+          const maxPage = getTotalPages() - 1;
+          if (currentPage > maxPage) currentPage = maxPage;
+          updateCarousel();
+        }, 200);
+      });
+
+
+      /* =========================================================
+         6. CONTACT FORM — Client-side mock submission
+         ========================================================= */
+      const contactForm = document.getElementById('contact-form');
+      const submitBtn = document.getElementById('submit-btn');
+      const formSuccess = document.getElementById('form-success');
+
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        // Basic validation
+        const nombre = document.getElementById('input-nombre').value.trim();
+        const email = document.getElementById('input-email').value.trim();
+        const consulta = document.getElementById('input-consulta').value.trim();
+
+        if (!nombre || !email || !consulta) {
+          submitBtn.textContent = 'Completá los campos requeridos';
+          submitBtn.classList.add('bg-terracota');
+          submitBtn.classList.remove('bg-azul');
+          setTimeout(() => {
+            submitBtn.textContent = 'Enviar consulta';
+            submitBtn.classList.remove('bg-terracota');
+            submitBtn.classList.add('bg-azul');
+          }, 2500);
+          return;
+        }
+
+        // Simulate sending
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Enviando...';
+
+        setTimeout(() => {
+          formSuccess.classList.remove('hidden');
+          contactForm.reset();
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Enviar consulta';
+
+          // Hide success message after a while
+          setTimeout(() => {
+            formSuccess.classList.add('hidden');
+          }, 5000);
+        }, 1200);
+      });
+
+
+      /* =========================================================
+         7. SMOOTH SCROLL — For footer/internal anchor links
+         ========================================================= */
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener('click', (e) => {
+          const targetId = anchor.getAttribute('href');
+          if (targetId === '#') return;
+          const targetEl = document.querySelector(targetId);
+          if (targetEl) {
+            e.preventDefault();
+            const headerHeight = header.offsetHeight;
+            const targetPosition = targetEl.getBoundingClientRect().top + window.scrollY - headerHeight;
+            window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+          }
+        });
+      });
+
+    }); // End DOMContentLoaded
+  </script>
+
+</body>
+</html>

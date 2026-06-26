@@ -1,0 +1,799 @@
+<!doctype html>
+<html lang="es" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="TieBreak Club: canchas de tenis y pádel, clases, gimnasio, torneos y comunidad deportiva al aire libre."
+    />
+    <title>TieBreak Club | Tenis, Pádel y Comunidad</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+      @theme {
+        --breakpoint-mobile: 400px;
+        --breakpoint-tablet: 900px;
+        --breakpoint-desktop: 1200px;
+        --color-clay: #e05a36;
+        --color-tennis: #dfff00;
+        --color-padel: #00509e;
+        --color-soft: #f9fafb;
+        --color-mist: #f3f4f6;
+        --shadow-soft: 0 20px 55px rgb(15 23 42 / 0.12);
+      }
+    </style>
+    <style>
+      :root {
+        --header-height: 84px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        min-width: 320px;
+        background: #f9fafb;
+        color: #111827;
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+      }
+
+      section {
+        scroll-margin-top: calc(var(--header-height) + 20px);
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition:
+          opacity 700ms ease,
+          transform 700ms ease;
+      }
+
+      .reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .nav-link.active {
+        background: rgb(223 255 0 / 0.18);
+        color: #dfff00;
+      }
+
+      .nav-link.nav-solid.active {
+        background: #00509e;
+        color: #fff;
+      }
+
+      .services-scroll {
+        scrollbar-width: thin;
+        scrollbar-color: #e05a36 #f3f4f6;
+      }
+
+      .services-scroll::-webkit-scrollbar {
+        height: 10px;
+      }
+
+      .services-scroll::-webkit-scrollbar-track {
+        background: #f3f4f6;
+        border-radius: 999px;
+      }
+
+      .services-scroll::-webkit-scrollbar-thumb {
+        background: #e05a36;
+        border-radius: 999px;
+      }
+
+      .testimonial-card {
+        display: none;
+      }
+
+      .testimonial-card.is-active {
+        display: flex;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          transition-duration: 1ms !important;
+          animation-duration: 1ms !important;
+          animation-iteration-count: 1 !important;
+        }
+
+        .reveal {
+          opacity: 1;
+          transform: none;
+        }
+      }
+    </style>
+  </head>
+  <body class="overflow-x-hidden antialiased">
+    <a
+      href="#inicio"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-xl focus:bg-tennis focus:px-4 focus:py-3 focus:font-bold focus:text-gray-950"
+    >
+      Saltar al contenido
+    </a>
+
+    <header
+      id="site-header"
+      class="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-transparent transition-all duration-300"
+    >
+      <nav
+        class="mx-auto flex h-[84px] max-w-[1200px] items-center justify-between px-5 mobile:px-6 tablet:px-8"
+        aria-label="Navegacion principal"
+      >
+        <a href="#inicio" class="group flex items-center gap-3" aria-label="TieBreak Club inicio">
+          <span
+            class="grid h-12 w-12 place-items-center rounded-2xl bg-tennis text-lg font-black text-gray-950 shadow-lg shadow-black/10 transition-transform duration-300 group-hover:rotate-3"
+            aria-hidden="true"
+          >
+            TB
+          </span>
+          <span class="text-xl font-black text-white transition-colors duration-300" data-header-brand>
+            TieBreak Club
+          </span>
+        </a>
+
+        <div class="hidden items-center gap-2 tablet:flex">
+          <a class="nav-link rounded-full px-4 py-2 text-sm font-bold text-white/90 transition hover:bg-white/12 hover:text-tennis" href="#inicio">Inicio</a>
+          <a class="nav-link rounded-full px-4 py-2 text-sm font-bold text-white/90 transition hover:bg-white/12 hover:text-tennis" href="#sobre-nosotros">Sobre nosotros</a>
+          <a class="nav-link rounded-full px-4 py-2 text-sm font-bold text-white/90 transition hover:bg-white/12 hover:text-tennis" href="#servicios">Servicios</a>
+          <a class="nav-link rounded-full px-4 py-2 text-sm font-bold text-white/90 transition hover:bg-white/12 hover:text-tennis" href="#testimonios">Jugadores</a>
+          <a class="nav-link rounded-full px-4 py-2 text-sm font-bold text-white/90 transition hover:bg-white/12 hover:text-tennis" href="#contacto">Contacto</a>
+        </div>
+
+        <button
+          id="menu-open"
+          type="button"
+          class="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/25 bg-white/10 text-white backdrop-blur transition hover:bg-white/20 focus:outline-none focus:ring-4 focus:ring-tennis/50 tablet:hidden"
+          aria-label="Abrir menu"
+          aria-controls="mobile-menu"
+          aria-expanded="false"
+        >
+          <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          </svg>
+        </button>
+      </nav>
+    </header>
+
+    <div id="menu-backdrop" class="fixed inset-0 z-[60] hidden bg-gray-950/55 opacity-0 transition-opacity duration-300 tablet:hidden"></div>
+    <aside
+      id="mobile-menu"
+      class="fixed right-0 top-0 z-[70] flex h-full w-[min(88vw,380px)] translate-x-full flex-col bg-padel px-6 py-6 text-white shadow-2xl transition-transform duration-300 tablet:hidden"
+      aria-label="Menu movil"
+      aria-hidden="true"
+    >
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <span class="grid h-11 w-11 place-items-center rounded-2xl bg-tennis font-black text-gray-950">TB</span>
+          <span class="text-lg font-black">TieBreak Club</span>
+        </div>
+        <button
+          id="menu-close"
+          type="button"
+          class="grid h-11 w-11 place-items-center rounded-2xl bg-white/10 transition hover:bg-white/20 focus:outline-none focus:ring-4 focus:ring-tennis/50"
+          aria-label="Cerrar menu"
+        >
+          <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          </svg>
+        </button>
+      </div>
+      <div class="mt-10 grid gap-3 text-lg font-bold">
+        <a class="mobile-nav rounded-2xl px-4 py-4 transition hover:bg-white/10" href="#inicio">Inicio</a>
+        <a class="mobile-nav rounded-2xl px-4 py-4 transition hover:bg-white/10" href="#sobre-nosotros">Sobre nosotros</a>
+        <a class="mobile-nav rounded-2xl px-4 py-4 transition hover:bg-white/10" href="#servicios">Servicios</a>
+        <a class="mobile-nav rounded-2xl px-4 py-4 transition hover:bg-white/10" href="#testimonios">Jugadores</a>
+        <a class="mobile-nav rounded-2xl bg-tennis px-4 py-4 text-gray-950 transition hover:bg-white" href="#contacto">Contacto</a>
+      </div>
+      <p class="mt-auto rounded-3xl bg-white/10 p-5 text-sm leading-6 text-white/80">
+        Canchas, clases y encuentros para vivir el deporte con amigos, familia y aire libre.
+      </p>
+    </aside>
+
+    <main>
+      <section
+        id="inicio"
+        class="relative isolate flex min-h-screen items-center overflow-hidden bg-gray-950 px-5 pb-20 pt-[120px] mobile:px-6 tablet:px-8"
+        aria-label="TieBreak Club"
+      >
+        <img
+          src="./img/bodega-khYMys2YN6E-unsplash.jpg"
+          alt="Canchas de tenis y pádel al aire libre"
+          class="absolute inset-0 -z-20 h-full w-full object-cover"
+        />
+        <div class="absolute inset-0 -z-10 bg-black/55"></div>
+        <div class="absolute inset-x-0 bottom-0 -z-10 h-44 bg-gradient-to-t from-gray-950/60 to-transparent"></div>
+
+        <div class="mx-auto grid w-full max-w-[1200px] gap-10 desktop:grid-cols-[1.05fr_0.72fr] desktop:items-end">
+          <div class="reveal max-w-4xl">
+            <p class="mb-5 inline-flex rounded-full border border-white/25 bg-white/12 px-4 py-2 text-sm font-bold text-tennis backdrop-blur">
+              Tenis, pádel, entrenamiento y comunidad
+            </p>
+            <h1 class="text-5xl font-black leading-[0.98] text-white mobile:text-6xl tablet:text-7xl desktop:text-8xl">
+              TieBreak Club
+            </h1>
+            <p class="mt-7 max-w-2xl text-lg font-medium leading-8 text-white/88 tablet:text-2xl tablet:leading-10">
+              Tu lugar. Tu deporte. Tu comunidad. Vení a vivir el deporte al aire libre en las mejores instalaciones de la ciudad.
+            </p>
+            <div class="mt-10 flex flex-col gap-4 mobile:flex-row">
+              <a
+                href="#contacto"
+                class="inline-flex items-center justify-center gap-3 rounded-2xl bg-tennis px-7 py-4 text-base font-black text-gray-950 shadow-2xl shadow-tennis/20 transition hover:-translate-y-1 hover:bg-white focus:outline-none focus:ring-4 focus:ring-tennis/55"
+              >
+                Reservá tu cancha
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </a>
+              <a
+                href="#servicios"
+                class="inline-flex items-center justify-center rounded-2xl border border-white/30 bg-white/10 px-7 py-4 text-base font-black text-white backdrop-blur transition hover:-translate-y-1 hover:bg-white/18 focus:outline-none focus:ring-4 focus:ring-white/30"
+              >
+                Ver servicios
+              </a>
+            </div>
+          </div>
+
+          <div class="reveal hidden rounded-3xl border border-white/20 bg-white/12 p-5 text-white shadow-soft backdrop-blur desktop:block">
+            <div class="grid grid-cols-3 gap-3">
+              <div class="rounded-2xl bg-white/14 p-4">
+                <strong class="block text-3xl text-tennis">11</strong>
+                <span class="text-sm text-white/75">canchas</span>
+              </div>
+              <div class="rounded-2xl bg-white/14 p-4">
+                <strong class="block text-3xl text-tennis">7</strong>
+                <span class="text-sm text-white/75">polvo de ladrillo</span>
+              </div>
+              <div class="rounded-2xl bg-white/14 p-4">
+                <strong class="block text-3xl text-tennis">4</strong>
+              <span class="text-sm text-white/75">pádel</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="sobre-nosotros" class="bg-soft px-5 py-20 mobile:px-6 tablet:px-8 tablet:py-28">
+        <div class="mx-auto max-w-[1200px]">
+          <div class="reveal max-w-3xl">
+            <p class="text-sm font-black uppercase text-clay">Sobre nosotros</p>
+            <h2 class="mt-4 text-4xl font-black leading-tight text-gray-950 tablet:text-5xl">
+              Más que un club, somos el punto de encuentro donde tu pasión por el deporte cobra vida.
+            </h2>
+          </div>
+
+          <div class="mt-12 grid gap-8 desktop:grid-cols-[0.9fr_1.1fr] desktop:items-stretch">
+            <div class="reveal overflow-hidden rounded-3xl shadow-soft">
+              <img
+                src="./img/ahmed-rCm6KqHtmyY-unsplash.jpg"
+                alt="Familia y amigos compartiendo deporte al aire libre"
+                class="h-full min-h-[360px] w-full object-cover"
+              />
+            </div>
+
+            <div class="grid gap-6">
+              <article class="reveal rounded-3xl bg-white p-6 shadow-soft tablet:p-8">
+                <h3 class="text-2xl font-black text-gray-950">Qué nos hace únicos</h3>
+                <ul class="mt-6 grid gap-5">
+                  <li class="flex gap-4">
+                    <span class="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-clay text-white">
+                      <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M7 17c4.5 0 10-5.5 10-10m0 0H9m8 0v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M5 19 19 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                      </svg>
+                    </span>
+                    <div>
+                      <strong class="text-lg text-gray-950">Centro integral de entrenamiento</strong>
+                      <p class="mt-1 leading-7 text-gray-600">7 canchas de polvo de ladrillo y 4 de pádel para jugar, entrenar y competir todo el año.</p>
+                    </div>
+                  </li>
+                  <li class="flex gap-4">
+                    <span class="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-padel text-white">
+                      <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M6 20V10m12 10V10M4 14h16M7 10l1-5h8l1 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    </span>
+                    <div>
+                      <strong class="text-lg text-gray-950">Instalaciones de primer nivel</strong>
+                      <p class="mt-1 leading-7 text-gray-600">Gimnasio especializado, vestuarios cómodos, buffet y espacios pensados para quedarse después del partido.</p>
+                    </div>
+                  </li>
+                  <li class="flex gap-4">
+                    <span class="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-tennis text-gray-950">
+                      <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M12 3v18m6-15H9a3 3 0 0 0 0 6h6a3 3 0 0 1 0 6H6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    </span>
+                    <div>
+                      <strong class="text-lg text-gray-950">Torneos y actividades constantes</strong>
+                      <p class="mt-1 leading-7 text-gray-600">Encuentros, rankings, clínicas y propuestas para que cada jugador encuentre su lugar en la comunidad.</p>
+                    </div>
+                  </li>
+                </ul>
+              </article>
+
+              <article class="reveal rounded-3xl bg-padel p-6 text-white shadow-soft tablet:p-8">
+                <h3 class="text-2xl font-black">Nuestra Misión</h3>
+                <p class="mt-4 text-lg leading-8 text-white/86">
+                  En TieBreak Club trabajamos para que cada visita se sienta cercana, activa y compartida. Nuestro equipo de profesores y staff acompaña con pasión a quienes empiezan, a quienes compiten y a las familias que buscan una forma sana de encontrarse alrededor del deporte.
+                </p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="servicios" class="bg-mist px-5 py-20 mobile:px-6 tablet:px-8 tablet:py-28">
+        <div class="mx-auto max-w-[1200px]">
+          <div class="reveal flex flex-col gap-6 tablet:flex-row tablet:items-end tablet:justify-between">
+            <div>
+              <p class="text-sm font-black uppercase text-clay">Nuestros Servicios</p>
+              <h2 class="mt-4 text-4xl font-black text-gray-950 tablet:text-5xl">Todo para tu juego</h2>
+            </div>
+            <div class="flex gap-3" aria-label="Controles del carrusel de servicios">
+              <button
+                type="button"
+                class="service-control grid h-12 w-12 place-items-center rounded-2xl bg-white text-gray-950 shadow-lg transition hover:bg-tennis focus:outline-none focus:ring-4 focus:ring-clay/20"
+                data-service-direction="-1"
+                aria-label="Servicio anterior"
+              >
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M15 6 9 12l6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+              <button
+                type="button"
+                class="service-control grid h-12 w-12 place-items-center rounded-2xl bg-white text-gray-950 shadow-lg transition hover:bg-tennis focus:outline-none focus:ring-4 focus:ring-clay/20"
+                data-service-direction="1"
+                aria-label="Servicio siguiente"
+              >
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="m9 6 6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div
+            id="services-track"
+            class="services-scroll reveal mt-10 flex snap-x snap-mandatory gap-6 overflow-x-auto pb-5"
+            tabindex="0"
+            aria-label="Servicios disponibles"
+          >
+            <article class="min-w-[86%] snap-start overflow-hidden rounded-3xl bg-white shadow-soft mobile:min-w-[78%] tablet:min-w-[48%] desktop:min-w-[380px]">
+              <img src="./img/mario-gogh-MpmAzASjUaM-unsplash.jpg" alt="Cancha de tenis de polvo de ladrillo" class="h-64 w-full object-cover" />
+              <div class="p-6 tablet:p-8">
+                <h3 class="text-2xl font-black text-gray-950">Alquiler de Canchas</h3>
+                <p class="mt-3 min-h-24 leading-7 text-gray-600">Reservá canchas de tenis o pádel por turno, con mantenimiento diario, iluminación y espacios preparados para jugar cómodo.</p>
+                <a href="#contacto" class="mt-6 inline-flex rounded-2xl bg-padel px-5 py-3 font-black text-white transition hover:bg-clay focus:outline-none focus:ring-4 focus:ring-padel/20">Conocé más</a>
+              </div>
+            </article>
+
+            <article class="min-w-[86%] snap-start overflow-hidden rounded-3xl bg-white shadow-soft mobile:min-w-[78%] tablet:min-w-[48%] desktop:min-w-[380px]">
+              <img src="./img/vincenzo-morelli-aYTK2HNocNw-unsplash.jpg" alt="Clase de pádel con profesor" class="h-64 w-full object-cover" />
+              <div class="p-6 tablet:p-8">
+                <h3 class="text-2xl font-black text-gray-950">Clases de Tenis y Pádel</h3>
+                <p class="mt-3 min-h-24 leading-7 text-gray-600">Programas para niños, adultos, principiantes y jugadores avanzados, guiados por profesores que combinan técnica y disfrute.</p>
+                <a href="#contacto" class="mt-6 inline-flex rounded-2xl bg-padel px-5 py-3 font-black text-white transition hover:bg-clay focus:outline-none focus:ring-4 focus:ring-padel/20">Conocé más</a>
+              </div>
+            </article>
+
+            <article class="min-w-[86%] snap-start overflow-hidden rounded-3xl bg-white shadow-soft mobile:min-w-[78%] tablet:min-w-[48%] desktop:min-w-[380px]">
+              <img src="./img/meghan-holmes-buWcS7G1_28-unsplash.jpg" alt="Entrenamiento fisico en gimnasio" class="h-64 w-full object-cover" />
+              <div class="p-6 tablet:p-8">
+                <h3 class="text-2xl font-black text-gray-950">Planes de Entrenamiento en Gimnasio</h3>
+                <p class="mt-3 min-h-24 leading-7 text-gray-600">Rutinas personalizadas para mejorar potencia, movilidad y prevencion de lesiones dentro y fuera de la cancha.</p>
+                <a href="#contacto" class="mt-6 inline-flex rounded-2xl bg-padel px-5 py-3 font-black text-white transition hover:bg-clay focus:outline-none focus:ring-4 focus:ring-padel/20">Conocé más</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="testimonios" class="bg-soft px-5 py-20 mobile:px-6 tablet:px-8 tablet:py-28">
+        <div class="mx-auto max-w-[1200px]">
+          <div class="reveal max-w-3xl">
+            <p class="text-sm font-black uppercase text-clay">Lo que dicen nuestros jugadores</p>
+            <h2 class="mt-4 text-4xl font-black text-gray-950 tablet:text-5xl">Historias que se juegan aca</h2>
+          </div>
+
+          <div id="testimonial-grid" class="reveal mt-10 grid gap-6 tablet:grid-cols-2" aria-live="polite">
+            <article class="testimonial-card min-h-[300px] flex-col rounded-3xl bg-white p-7 shadow-soft tablet:p-8" data-testimonial>
+              <div class="mb-5 flex gap-1" aria-label="5 pelotas de 5"></div>
+              <p class="text-lg leading-8 text-gray-700">"Las canchas de polvo de ladrillo están impecables. Se nota el cuidado diario y el ambiente hace que siempre quieras quedarte a tomar algo después."</p>
+              <strong class="mt-auto pt-6 text-xl text-gray-950">Martina Gomez</strong>
+              <span class="mt-1 text-sm font-bold text-clay">Socia de tenis</span>
+            </article>
+            <article class="testimonial-card min-h-[300px] flex-col rounded-3xl bg-white p-7 shadow-soft tablet:p-8" data-testimonial>
+              <div class="mb-5 flex gap-1" aria-label="5 pelotas de 5"></div>
+              <p class="text-lg leading-8 text-gray-700">"Empecé con pádel por curiosidad y terminé jugando dos veces por semana. Los profes explican claro y el grupo es súper buena onda."</p>
+              <strong class="mt-auto pt-6 text-xl text-gray-950">Lucas Herrera</strong>
+              <span class="mt-1 text-sm font-bold text-clay">Jugador de pádel</span>
+            </article>
+            <article class="testimonial-card min-h-[300px] flex-col rounded-3xl bg-white p-7 shadow-soft tablet:p-8" data-testimonial>
+              <div class="mb-5 flex gap-1" aria-label="4 pelotas de 5"></div>
+              <p class="text-lg leading-8 text-gray-700">"Venimos en familia los sábados. Los chicos toman clase, nosotros jugamos un rato y después almorzamos en el buffet. Es nuestro plan favorito."</p>
+              <strong class="mt-auto pt-6 text-xl text-gray-950">Sofia y Andres</strong>
+              <span class="mt-1 text-sm font-bold text-clay">Familia socia</span>
+            </article>
+            <article class="testimonial-card min-h-[300px] flex-col rounded-3xl bg-white p-7 shadow-soft tablet:p-8" data-testimonial>
+              <div class="mb-5 flex gap-1" aria-label="5 pelotas de 5"></div>
+              <p class="text-lg leading-8 text-gray-700">"Los torneos están muy bien organizados. Hay competencia, pero también mucha camaradería. El tercer tiempo siempre suma."</p>
+              <strong class="mt-auto pt-6 text-xl text-gray-950">Nicolas Perez</strong>
+              <span class="mt-1 text-sm font-bold text-clay">Jugador de ranking</span>
+            </article>
+            <article class="testimonial-card min-h-[300px] flex-col rounded-3xl bg-white p-7 shadow-soft tablet:p-8" data-testimonial>
+              <div class="mb-5 flex gap-1" aria-label="4 pelotas de 5"></div>
+              <p class="text-lg leading-8 text-gray-700">"El gimnasio me ayudó muchísimo a mejorar desplazamientos y resistencia. Se trabaja pensando en el deporte, no con rutinas genéricas."</p>
+              <strong class="mt-auto pt-6 text-xl text-gray-950">Camila Rios</strong>
+              <span class="mt-1 text-sm font-bold text-clay">Entrenamiento deportivo</span>
+            </article>
+            <article class="testimonial-card min-h-[300px] flex-col rounded-3xl bg-white p-7 shadow-soft tablet:p-8" data-testimonial>
+              <div class="mb-5 flex gap-1" aria-label="5 pelotas de 5"></div>
+              <p class="text-lg leading-8 text-gray-700">"Reservé una cancha de pádel para jugar con amigos y nos atendieron excelente. Fácil, rápido y con una energía muy de club de barrio moderno."</p>
+              <strong class="mt-auto pt-6 text-xl text-gray-950">Diego Martinez</strong>
+              <span class="mt-1 text-sm font-bold text-clay">Reserva semanal</span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="contacto" class="bg-mist px-5 py-20 mobile:px-6 tablet:px-8 tablet:py-28">
+        <div class="mx-auto grid max-w-[1200px] gap-10 desktop:grid-cols-[0.85fr_1fr] desktop:items-start">
+          <div class="reveal">
+            <p class="text-sm font-black uppercase text-clay">Escribinos</p>
+            <h2 class="mt-4 text-4xl font-black leading-tight text-gray-950 tablet:text-5xl">
+              ¿Listo para tu próximo partido?
+            </h2>
+            <p class="mt-6 max-w-xl text-xl leading-8 text-gray-600">
+              Dejanos tus datos y te contactamos al instante.
+            </p>
+            <div class="mt-8 grid gap-4 text-gray-700">
+              <p class="flex items-center gap-3">
+                <span class="h-3 w-3 rounded-full bg-tennis ring-4 ring-tennis/25"></span>
+                Turnos para tenis, pádel y gimnasio.
+              </p>
+              <p class="flex items-center gap-3">
+                <span class="h-3 w-3 rounded-full bg-clay ring-4 ring-clay/20"></span>
+                Respuesta rapida del equipo de atencion.
+              </p>
+            </div>
+          </div>
+
+          <form id="contact-form" class="reveal rounded-3xl bg-white p-6 shadow-soft tablet:p-8" novalidate>
+            <div class="grid gap-5 tablet:grid-cols-2">
+              <label class="grid gap-2 text-sm font-bold text-gray-800">
+                Nombre
+                <input
+                  name="name"
+                  type="text"
+                  autocomplete="name"
+                  required
+                  class="rounded-2xl border border-gray-200 bg-soft px-4 py-4 text-base font-medium outline-none transition focus:border-padel focus:ring-4 focus:ring-padel/10"
+                  placeholder="Tu nombre"
+                />
+              </label>
+              <label class="grid gap-2 text-sm font-bold text-gray-800">
+                Email
+                <input
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  required
+                  class="rounded-2xl border border-gray-200 bg-soft px-4 py-4 text-base font-medium outline-none transition focus:border-padel focus:ring-4 focus:ring-padel/10"
+                  placeholder="tu@email.com"
+                />
+              </label>
+              <label class="grid gap-2 text-sm font-bold text-gray-800 tablet:col-span-2">
+                Telefono
+                <input
+                  name="phone"
+                  type="tel"
+                  autocomplete="tel"
+                  required
+                  class="rounded-2xl border border-gray-200 bg-soft px-4 py-4 text-base font-medium outline-none transition focus:border-padel focus:ring-4 focus:ring-padel/10"
+                  placeholder="+54 9 11 0000 0000"
+                />
+              </label>
+              <label class="grid gap-2 text-sm font-bold text-gray-800 tablet:col-span-2">
+                Consulta
+                <textarea
+                  name="message"
+                  rows="5"
+                  required
+                  class="resize-y rounded-2xl border border-gray-200 bg-soft px-4 py-4 text-base font-medium outline-none transition focus:border-padel focus:ring-4 focus:ring-padel/10"
+                  placeholder="Contanos qué cancha, clase o plan te interesa."
+                ></textarea>
+              </label>
+            </div>
+            <button
+              type="submit"
+              class="mt-6 inline-flex w-full items-center justify-center rounded-2xl bg-clay px-7 py-4 text-base font-black text-white shadow-lg shadow-clay/25 transition hover:-translate-y-1 hover:bg-padel focus:outline-none focus:ring-4 focus:ring-clay/25"
+            >
+              Enviar consulta
+            </button>
+            <p id="form-status" class="mt-4 hidden rounded-2xl bg-tennis/30 px-4 py-3 text-sm font-bold text-gray-950" role="status"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bg-padel px-5 pt-16 text-white mobile:px-6 tablet:px-8">
+      <div class="mx-auto max-w-[1200px]">
+        <div class="grid gap-10 tablet:grid-cols-2 desktop:grid-cols-4">
+          <section aria-labelledby="footer-contacto">
+            <h2 id="footer-contacto" class="text-xl font-black">Contacto</h2>
+            <ul class="mt-5 grid gap-3 text-white/78">
+              <li>Av. Deporte 1450, Ciudad</li>
+              <li>+54 9 11 4567 8900</li>
+              <li>hola@tiebreakclub.com</li>
+              <li>Lun a Sab: 8:00 a 23:00</li>
+            </ul>
+          </section>
+
+          <section aria-labelledby="footer-links">
+            <h2 id="footer-links" class="text-xl font-black">Enlaces de interes</h2>
+            <ul class="mt-5 grid gap-3 text-white/78">
+              <li><a class="transition hover:text-tennis" href="#contacto">Reserva de canchas</a></li>
+              <li><a class="transition hover:text-tennis" href="#servicios">Clases</a></li>
+              <li><a class="transition hover:text-tennis" href="#testimonios">Torneos</a></li>
+              <li><a class="transition hover:text-tennis" href="#sobre-nosotros">Normativa del club</a></li>
+            </ul>
+          </section>
+
+          <section aria-labelledby="footer-social">
+            <h2 id="footer-social" class="text-xl font-black">Redes Sociales</h2>
+            <ul class="mt-5 grid gap-3 text-white/78">
+              <li>
+                <a class="inline-flex items-center gap-3 transition hover:text-tennis" href="#" aria-label="Instagram de TieBreak Club">
+                  <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="2" />
+                    <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2" />
+                    <path d="M17.5 6.5h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
+                  </svg>
+                  Instagram
+                </a>
+              </li>
+              <li>
+                <a class="inline-flex items-center gap-3 transition hover:text-tennis" href="#" aria-label="Facebook de TieBreak Club">
+                  <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M14 8.5V6.8c0-.8.4-1.2 1.3-1.2H17V2.5c-.8-.1-1.7-.2-2.5-.2-2.5 0-4.2 1.5-4.2 4.3v1.9H7.5V12h2.8v9.5H14V12h2.8l.5-3.5H14Z" />
+                  </svg>
+                  Facebook
+                </a>
+              </li>
+              <li>
+                <a class="inline-flex items-center gap-3 transition hover:text-tennis" href="mailto:hola@tiebreakclub.com" aria-label="Enviar email a TieBreak Club">
+                  <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M4 6h16v12H4V6Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+                    <path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  Email
+                </a>
+              </li>
+              <li>
+                <a class="inline-flex items-center gap-3 transition hover:text-tennis" href="#" aria-label="WhatsApp de TieBreak Club">
+                  <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M4.8 19.2 6 15.7a7.6 7.6 0 1 1 2.5 2.3l-3.7 1.2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+                    <path d="M9.4 8.8c.2-.4.4-.4.7-.4h.5c.2 0 .4.1.5.4l.5 1.2c.1.3.1.5-.1.7l-.4.5c.6 1 1.4 1.8 2.5 2.3l.5-.4c.2-.2.4-.2.7-.1l1.2.6c.3.1.4.3.4.6v.4c0 .4-.1.6-.4.8-.5.3-1.2.5-1.8.4-2.9-.4-5.2-2.5-5.9-5.3-.2-.6 0-1.2.3-1.7Z" fill="currentColor" />
+                  </svg>
+                  WhatsApp
+                </a>
+              </li>
+            </ul>
+          </section>
+
+          <section aria-labelledby="footer-legal">
+            <h2 id="footer-legal" class="text-xl font-black">Legal</h2>
+            <ul class="mt-5 grid gap-3 text-white/78">
+              <li><a class="transition hover:text-tennis" href="#">Aviso legal</a></li>
+              <li><a class="transition hover:text-tennis" href="#">Política de privacidad</a></li>
+              <li><a class="transition hover:text-tennis" href="#">Cookies</a></li>
+              <li>© 2026 TieBreak Club</li>
+            </ul>
+          </section>
+        </div>
+
+        <div class="mt-14 border-t border-white/15 py-7 text-center text-sm font-bold text-white/70">
+          Web desarrollada por MAE.dev
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const header = document.querySelector("#site-header");
+      const brand = document.querySelector("[data-header-brand]");
+      const navLinks = [...document.querySelectorAll(".nav-link")];
+      const sections = [...document.querySelectorAll("main section[id]")];
+      const menuOpen = document.querySelector("#menu-open");
+      const menuClose = document.querySelector("#menu-close");
+      const mobileMenu = document.querySelector("#mobile-menu");
+      const menuBackdrop = document.querySelector("#menu-backdrop");
+      const mobileLinks = [...document.querySelectorAll(".mobile-nav")];
+      const servicesTrack = document.querySelector("#services-track");
+      const serviceControls = [...document.querySelectorAll(".service-control")];
+      const testimonials = [...document.querySelectorAll("[data-testimonial]")];
+      const form = document.querySelector("#contact-form");
+      const formStatus = document.querySelector("#form-status");
+
+      const ballIcon = `
+        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="12" r="9" fill="#DFFF00" stroke="#111827" stroke-width="1.4" />
+          <path d="M6.8 5.2c2.1 2.5 3.2 5.1 3.2 6.8s-1.1 4.3-3.2 6.8M17.2 5.2C15.1 7.7 14 10.3 14 12s1.1 4.3 3.2 6.8" stroke="#111827" stroke-width="1.35" stroke-linecap="round" />
+        </svg>
+      `;
+
+      const setHeaderState = () => {
+        const isScrolled = window.scrollY > 24;
+        header.classList.toggle("bg-soft/95", isScrolled);
+        header.classList.toggle("backdrop-blur-xl", isScrolled);
+        header.classList.toggle("shadow-lg", isScrolled);
+        header.classList.toggle("shadow-gray-950/10", isScrolled);
+        header.classList.toggle("border-gray-200/70", isScrolled);
+        header.classList.toggle("border-white/10", !isScrolled);
+        brand.classList.toggle("text-white", !isScrolled);
+        brand.classList.toggle("text-gray-950", isScrolled);
+
+        navLinks.forEach((link) => {
+          link.classList.toggle("text-white/90", !isScrolled);
+          link.classList.toggle("hover:bg-white/12", !isScrolled);
+          link.classList.toggle("text-gray-700", isScrolled);
+          link.classList.toggle("hover:bg-gray-100", isScrolled);
+          link.classList.toggle("nav-solid", isScrolled);
+        });
+      };
+
+      const openMenu = () => {
+        mobileMenu.classList.remove("translate-x-full");
+        mobileMenu.setAttribute("aria-hidden", "false");
+        menuOpen.setAttribute("aria-expanded", "true");
+        menuBackdrop.classList.remove("hidden");
+        requestAnimationFrame(() => menuBackdrop.classList.remove("opacity-0"));
+        document.body.style.overflow = "hidden";
+      };
+
+      const closeMenu = () => {
+        mobileMenu.classList.add("translate-x-full");
+        mobileMenu.setAttribute("aria-hidden", "true");
+        menuOpen.setAttribute("aria-expanded", "false");
+        menuBackdrop.classList.add("opacity-0");
+        document.body.style.overflow = "";
+        window.setTimeout(() => menuBackdrop.classList.add("hidden"), 300);
+      };
+
+      const updateActiveLink = (id) => {
+        navLinks.forEach((link) => {
+          link.classList.toggle("active", link.getAttribute("href") === `#${id}`);
+        });
+      };
+
+      const initReveal = () => {
+        const revealItems = [...document.querySelectorAll(".reveal")];
+        if (prefersReducedMotion) {
+          revealItems.forEach((item) => item.classList.add("is-visible"));
+          return;
+        }
+
+        const revealObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                revealObserver.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.14, rootMargin: "0px 0px -60px 0px" }
+        );
+
+        revealItems.forEach((item) => revealObserver.observe(item));
+      };
+
+      const initSectionObserver = () => {
+        const sectionObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                updateActiveLink(entry.target.id);
+              }
+            });
+          },
+          { threshold: 0.48, rootMargin: "-24% 0px -45% 0px" }
+        );
+
+        sections.forEach((section) => sectionObserver.observe(section));
+      };
+
+      const initServiceControls = () => {
+        serviceControls.forEach((button) => {
+          button.addEventListener("click", () => {
+            const direction = Number(button.dataset.serviceDirection);
+            const card = servicesTrack.querySelector("article");
+            const scrollAmount = card.offsetWidth + 24;
+            servicesTrack.scrollBy({
+              left: direction * scrollAmount,
+              behavior: prefersReducedMotion ? "auto" : "smooth",
+            });
+          });
+        });
+      };
+
+      const getVisibleTestimonials = () => (window.innerWidth >= 900 ? 2 : 1);
+
+      const renderTestimonials = (startIndex = 0) => {
+        const visible = getVisibleTestimonials();
+        testimonials.forEach((card, index) => {
+          const shouldShow = index >= startIndex && index < startIndex + visible;
+          card.classList.toggle("is-active", shouldShow);
+        });
+      };
+
+      const initTestimonials = () => {
+        testimonials.forEach((card) => {
+          const label = card.querySelector("[aria-label]").getAttribute("aria-label");
+          const count = Number(label.match(/\d+/)?.[0] || 4);
+          card.querySelector("[aria-label]").innerHTML = ballIcon.repeat(Math.max(4, count));
+        });
+
+        let current = 0;
+        const rotate = () => {
+          const visible = getVisibleTestimonials();
+          current = (current + visible) % testimonials.length;
+          renderTestimonials(current);
+        };
+
+        renderTestimonials(current);
+        if (!prefersReducedMotion) {
+          window.setInterval(rotate, 5200);
+        }
+
+        window.addEventListener("resize", () => {
+          current = Math.min(current, testimonials.length - getVisibleTestimonials());
+          renderTestimonials(current);
+        });
+      };
+
+      const initForm = () => {
+        form.addEventListener("submit", (event) => {
+          event.preventDefault();
+
+          if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+          }
+
+          formStatus.textContent = "Gracias. Recibimos tu consulta! El equipo de TieBreak Club te va a contactar pronto.";
+          formStatus.classList.remove("hidden");
+          form.reset();
+        });
+      };
+
+      window.addEventListener("scroll", setHeaderState, { passive: true });
+      menuOpen.addEventListener("click", openMenu);
+      menuClose.addEventListener("click", closeMenu);
+      menuBackdrop.addEventListener("click", closeMenu);
+      mobileLinks.forEach((link) => link.addEventListener("click", closeMenu));
+      window.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && mobileMenu.getAttribute("aria-hidden") === "false") {
+          closeMenu();
+        }
+      });
+
+      setHeaderState();
+      updateActiveLink("inicio");
+      initReveal();
+      initSectionObserver();
+      initServiceControls();
+      initTestimonials();
+      initForm();
+    </script>
+  </body>
+</html>
